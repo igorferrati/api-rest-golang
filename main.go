@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 
+	"github.com/igorferrati/api-rest-golang/database"
 	"github.com/igorferrati/api-rest-golang/models"
 	"github.com/igorferrati/api-rest-golang/routes"
 )
@@ -13,6 +14,8 @@ func main() {
 		{Id: 1, Nome: "Nome 1", Historia: "Historia 1"},
 		{Id: 2, Nome: "Nome 2", Historia: "Historia 2"},
 	}
+
+	database.ConnectaBnacoDB()
 
 	fmt.Println("Iniciando projeto!")
 	routes.HandleResquest()
