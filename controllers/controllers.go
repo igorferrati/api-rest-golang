@@ -24,8 +24,25 @@ func RetornaPersonalidade(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id := vars["id"]
 
-	var Personalidade models.Personalidade
+	var personalidade models.Personalidade
 
-	database.DB.First(&Personalidade, id)
-	json.NewEncoder(w).Encode(Personalidade)
+	database.DB.First(&personalidade, id)
+	json.NewEncoder(w).Encode(personalidade)
+}
+
+func CriaPersonalidade(w http.ResponseWriter, r *http.Request) {
+	var novaPersonalidade models.Personalidade
+	json.NewDecoder(r.Body).Decode(&novaPersonalidade) //pega info json e salva no db
+
+	database.DB.Create(&novaPersonalidade) //salva db
+	json.NewEncoder(w).Encode(novaPersonalidade)
+}
+
+func DeletaPersonalidade(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	id := vars["id"]
+	var personalidade models.Personalidade
+
+	database.DB.Delete(&personalidade, id)
+	json.NewEncoder(w).Encode(personalidade)
 }
