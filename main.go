@@ -14,9 +14,9 @@ func main() {
 		{Id: 1, Nome: "Nome 1", Historia: "Historia 1"},
 		{Id: 2, Nome: "Nome 2", Historia: "Historia 2"},
 	}
+	fmt.Println("Conectando no banco")
+	database.ConectaDB()
 
-	database.ConnectaBnacoDB()
-
-	fmt.Println("Iniciando projeto!")
+	fmt.Println("Iniciando servidor")
 	routes.HandleResquest()
 }
